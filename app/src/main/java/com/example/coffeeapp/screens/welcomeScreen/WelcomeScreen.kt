@@ -68,6 +68,7 @@ fun WelcomeScreen(){
             color = Color.LightGray,
             fontSize = 18.sp,
             textAlign = TextAlign.Center,
+            fontFamily = Poppins
         )
 
         Spacer(modifier = Modifier.height(440.dp))
@@ -83,7 +84,8 @@ fun WelcomeScreen(){
         ) {
             Text(
                 text = "Let's Get Started!",
-                fontSize = 17.sp
+                fontSize = 17.sp,
+                fontFamily = Poppins
             )
         }
     }
