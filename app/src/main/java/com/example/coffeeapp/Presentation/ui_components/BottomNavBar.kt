@@ -1,6 +1,5 @@
-package com.example.coffeeapp.screens.ui_components
+package com.example.coffeeapp.Presentation.ui_components
 
-import android.graphics.fonts.FontFamily
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -17,9 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.coffeeapp.R
-import com.example.coffeeapp.ui.theme.LightBrown
-import com.example.coffeeapp.ui.theme.LightGray
-import com.example.coffeeapp.ui.theme.Poppins
+import com.example.coffeeapp.Presentation.theme.LightBrown
+import com.example.coffeeapp.Presentation.theme.Poppins
 
 
 @Preview
@@ -27,9 +25,9 @@ import com.example.coffeeapp.ui.theme.Poppins
 fun BottomNavBar(){
     val navItems = listOf(
         NavItem("Home", R.drawable.home),
-        NavItem("Cart", R.drawable.shoppingbag),
-        NavItem("Favourites", R.drawable.heart),
-        NavItem("Profile", R.drawable.user),
+        NavItem("Cart", R.drawable.regular_outline_bag),
+        NavItem("Favourites", R.drawable.regular_outline_heart),
+        NavItem("Profile", R.drawable.outline_account_circle_24),
 
     )
 

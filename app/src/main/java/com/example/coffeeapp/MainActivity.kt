@@ -5,15 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.coffeeapp.screens.HomeScreen.HomeScreen
-import com.example.coffeeapp.screens.welcomeScreen.WelcomeScreen
-import com.example.coffeeapp.ui.theme.CoffeeAppTheme
+import com.example.coffeeapp.Presentation.screens.DetailScreen.DSTopAppBar
+import com.example.coffeeapp.Presentation.screens.HomeScreen.HomeScreen
+import com.example.coffeeapp.Presentation.theme.CoffeeAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoffeeAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen()
+                    DSTopAppBar()
                 }
             }
         }
@@ -34,6 +32,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     CoffeeAppTheme {
-        HomeScreen()
+        //HomeScreen()
     }
 }

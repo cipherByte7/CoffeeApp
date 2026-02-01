@@ -1,4 +1,4 @@
-package com.example.coffeeapp.modal
+package com.example.coffeeapp.domain.modal
 
 class Product(
     val id: Int,

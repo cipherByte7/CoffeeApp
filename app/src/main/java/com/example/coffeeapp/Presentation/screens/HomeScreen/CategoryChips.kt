@@ -1,11 +1,9 @@
-package com.example.coffeeapp.screens.HomeScreen
+package com.example.coffeeapp.Presentation.screens.HomeScreen
 
-import android.graphics.Paint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -16,8 +14,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffeeapp.ui.theme.LightBrown
-import com.example.coffeeapp.ui.theme.Poppins
+import com.example.coffeeapp.Presentation.theme.LightBrown
+import com.example.coffeeapp.Presentation.theme.Poppins
 
 @Composable
 fun CategoryChips(text: String,

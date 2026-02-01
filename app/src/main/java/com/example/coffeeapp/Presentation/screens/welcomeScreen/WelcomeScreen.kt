@@ -1,4 +1,4 @@
-package com.example.coffeeapp.screens.welcomeScreen
+package com.example.coffeeapp.Presentation.screens.welcomeScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coffeeapp.R
-import com.example.coffeeapp.ui.theme.Poppins
+import com.example.coffeeapp.Presentation.theme.Poppins
 
 @Preview(showBackground = true)
 @Composable
