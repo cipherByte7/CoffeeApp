@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.domain.modal.Product
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.LightGray
@@ -42,12 +45,15 @@ import com.example.coffeeapp.Presentation.theme.Poppins
 @Composable
 fun ProductCard(
     product: Product,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
+
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { navController.navigate(Routes.DetailScreen(product.id))},
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = LightGray

@@ -1,5 +1,7 @@
 package com.example.coffeeapp.Presentation.screens.DetailScreen
 
+import android.R.attr.onClick
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,15 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.R
 
-@Preview(showBackground = true)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DSTopAppBar(){
+fun DSTopAppBar(navController: NavController){
 
         TopAppBar(
             title = { Text( "Details",
@@ -45,6 +47,7 @@ fun DSTopAppBar(){
                     contentDescription = "Back",
                     modifier = Modifier
                         .padding(start = 8.dp)
+                        .clickable ( onClick = { navController.navigateUp() } )
                 )
             }
         )

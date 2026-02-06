@@ -9,8 +9,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.coffeeapp.Presentation.navigation.NavGraph
 import com.example.coffeeapp.Presentation.screens.DetailScreen.DSTopAppBar
+import com.example.coffeeapp.Presentation.screens.DetailScreen.DetailScreen
 import com.example.coffeeapp.Presentation.screens.HomeScreen.HomeScreen
+import com.example.coffeeapp.Presentation.screens.cartScreen.CartScreen
 import com.example.coffeeapp.Presentation.theme.CoffeeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoffeeAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    DSTopAppBar()
+                    CartScreen()
                 }
             }
         }

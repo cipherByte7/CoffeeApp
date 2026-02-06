@@ -27,17 +27,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.coffeeapp.R
 import com.example.coffeeapp.domain.modal.Product
 import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
 import com.example.coffeeapp.Presentation.theme.Poppins
 
-@Preview(showBackground = true, showSystemUi = false)
+//@Preview(showBackground = true, showSystemUi = false)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavController){
     val location = "Pune, Maharashtra"
     Scaffold(
-        bottomBar = { BottomNavBar() }
+        bottomBar = { BottomNavBar(navController, "Home") }
     ){ innerPadding ->
 
         Box(
@@ -69,7 +71,7 @@ fun HomeScreen(){
                 Product(id = 7, "Hot Chocolate", "Rich & Creamy", 14.99, R.drawable.hot_chocolate)
             )
 
-            ProductsGrid(products = products){
+            ProductsGrid(products = products, navController = navController){
                 Text(
                     text = "Location",
                     fontFamily = Poppins,
