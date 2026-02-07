@@ -1,5 +1,6 @@
 package com.example.coffeeapp.Presentation.ui_components
 
+import android.R.attr.onClick
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -35,7 +36,7 @@ fun BottomNavBar(navController: NavController, routes: String){
 
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.surface,
-        modifier =  Modifier.height(100.dp)
+        modifier =  Modifier.height(65.dp)
     ){
         navItems.forEachIndexed { index, item ->
             NavigationBarItem(
@@ -50,7 +51,7 @@ fun BottomNavBar(navController: NavController, routes: String){
                     fontFamily = Poppins
                 )
                     },
-                modifier = Modifier.size(20.dp),
+                modifier = Modifier.size(18.dp),
                 onClick = {
                     navController.navigate(item.routes){
                         popUpTo(navController.graph.startDestinationId){
@@ -60,7 +61,7 @@ fun BottomNavBar(navController: NavController, routes: String){
                         restoreState = true
                     }
                 },
-                selected = true,
+                selected = item.title == routes,
                 alwaysShowLabel = false,
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = LightBrown,

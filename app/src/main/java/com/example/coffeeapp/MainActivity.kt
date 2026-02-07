@@ -14,6 +14,7 @@ import com.example.coffeeapp.Presentation.screens.DetailScreen.DSTopAppBar
 import com.example.coffeeapp.Presentation.screens.DetailScreen.DetailScreen
 import com.example.coffeeapp.Presentation.screens.HomeScreen.HomeScreen
 import com.example.coffeeapp.Presentation.screens.cartScreen.CartScreen
+import com.example.coffeeapp.Presentation.screens.favouriteScreen.FavouritesScreen
 import com.example.coffeeapp.Presentation.theme.CoffeeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoffeeAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CartScreen()
+                    NavGraph()
                 }
             }
         }

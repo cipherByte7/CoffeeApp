@@ -16,6 +16,7 @@ sealed class Routes {
     object ProfileScreen : Routes()
     @Serializable
     object FavouritesScreen : Routes()
+
 }
 
 

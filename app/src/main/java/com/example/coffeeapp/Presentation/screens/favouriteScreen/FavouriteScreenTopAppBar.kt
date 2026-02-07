@@ -1,4 +1,4 @@
-package com.example.coffeeapp.Presentation.screens.cartScreen
+package com.example.coffeeapp.Presentation.screens.favouriteScreen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.Presentation.theme.Poppins
@@ -21,14 +22,15 @@ import com.example.coffeeapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartScreenTopAppBar(navController: NavController){
+fun FavouriteScreenTopAppBar(){
 
     TopAppBar(
-        title = { Text( "Order",
+        title = { Text( "Favourites",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
             fontFamily = Poppins,
+            fontSize = 24.sp
             //horizontalArrangement = Arrangement.Center
         )
 

@@ -1,4 +1,5 @@
-package com.example.coffeeapp.Presentation.screens.cartScreen
+package com.example.coffeeapp.Presentation.screens.profileScreen
+
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,10 +22,10 @@ import com.example.coffeeapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartScreenTopAppBar(navController: NavController){
+fun ProfileScreenTopAppBar(){
 
     TopAppBar(
-        title = { Text( "Order",
+        title = { Text( "Profile",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
