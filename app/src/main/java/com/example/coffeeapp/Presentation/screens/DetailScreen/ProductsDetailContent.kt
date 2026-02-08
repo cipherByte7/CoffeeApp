@@ -75,7 +75,7 @@ fun ProductsDetailContent(
             verticalAlignment = Alignment.CenterVertically
         ){
             Text(
-                "Ice/Hot",
+                product.description,
                 fontSize = 16.sp,
                 color = Color.Gray,
                 //color = CharcoalGray.copy(alpha = 0.8f),
@@ -124,7 +124,7 @@ fun ProductsDetailContent(
         Text(
             "Size",
             fontSize = 16.sp,
-            color = Color.LightGray,
+            color = Color.Black,
             fontWeight = FontWeight.Medium
         )
 

@@ -46,7 +46,6 @@ fun SearchBar(){
                 .height(56.dp),
             leadingIcon = {
                 Icon(
-
                     painter = painterResource(R.drawable.search),
                     contentDescription = "Search",
                     modifier = Modifier.size(20.dp),
@@ -56,6 +55,7 @@ fun SearchBar(){
             shape = RoundedCornerShape(
                 topStart = 12.dp, topEnd = 0.dp, bottomStart = 12.dp, bottomEnd = 0.dp
             ),
+
             singleLine = true,
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,

@@ -26,10 +26,11 @@ import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.Presentation.ui_components.AppMessageDialogue
+import com.example.coffeeapp.domain.modal.Product
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun DSBottomBar(){
+fun DSBottomBar(product: Product){
 
     var showCartDialogue by remember { mutableStateOf(false) }
 
@@ -48,7 +49,7 @@ fun DSBottomBar(){
                 //Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    "$24.234",
+                    text = product.price.toString(),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.SemiBold
                 )

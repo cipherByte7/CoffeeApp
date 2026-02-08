@@ -23,16 +23,5 @@ fun HomeCategories() {
 
     var selectedCategory by remember { mutableStateOf(categories.first()) }
 
-    LazyRow(
-        modifier = Modifier.padding(horizontal = 4.dp),
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        items(categories) { category ->
-            CategoryChips(
-                text = category,
-                isSelected = category == selectedCategory,
-                onSelected = { selectedCategory = category }
-            )
-        }
-    }
+
 }

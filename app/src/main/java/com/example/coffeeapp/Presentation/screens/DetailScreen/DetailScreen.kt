@@ -33,7 +33,7 @@ fun DetailScreen(productId: Int, navController: NavHostController){
 
     Scaffold(
         topBar = { DSTopAppBar(navController) },
-        bottomBar = { DSBottomBar() }
+        bottomBar = { DSBottomBar(product = selectedProduct) }
     ) { innerPadding ->
 
         LazyColumn() {

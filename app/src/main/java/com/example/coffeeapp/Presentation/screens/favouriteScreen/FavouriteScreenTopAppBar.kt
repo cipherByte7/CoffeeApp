@@ -34,7 +34,6 @@ fun FavouriteScreenTopAppBar(){
             //horizontalArrangement = Arrangement.Center
         )
 
-
         },
     )
 }

@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
+import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.domain.modal.Product
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.LightGray
@@ -56,7 +57,7 @@ fun ProductCard(
             .clickable { navController.navigate(Routes.DetailScreen(product.id))},
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = LightGray
+            containerColor = IvoryWhite
         ),
 
     ) {
@@ -81,8 +82,8 @@ fun ProductCard(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(8.dp)
-                        .background(LightGray.copy(0.5f),
-                            shape = RoundedCornerShape(8.dp)
+                        .background(IvoryWhite.copy(1f),
+                            shape = RoundedCornerShape(12.dp)
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ){
@@ -103,7 +104,7 @@ fun ProductCard(
                 fontSize = 20.sp
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
+           // Spacer(modifier = Modifier.height(4.dp))
 
             Text(text = product.description,
                 fontFamily = Poppins,

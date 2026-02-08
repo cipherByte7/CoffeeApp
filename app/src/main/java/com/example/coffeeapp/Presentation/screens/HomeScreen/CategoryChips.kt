@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 
@@ -34,7 +35,8 @@ fun CategoryChips(text: String,
         Text(text = text,
             fontSize = 14.sp,
             fontFamily = Poppins,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            color = IvoryWhite
         )
     }
 }
