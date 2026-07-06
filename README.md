@@ -5,18 +5,17 @@ A modern Android coffee ordering application built with **Kotlin** and **Jetpack
 ---
 
 ## 📱 Screenshots
-
 <p align="center">
-  <img src="./screenshots/welcome-screen.jpeg" width="22%" alt="Welcome Screen">
-  <img src="./screenshots/home-screen.jpeg" width="22%" alt="Home Screen">
-  <img src="./screenshots/product-details.jpeg" width="22%" alt="Product Details Screen">
-  <img src="./screenshots/favourite-screen.jpeg" width="22%" alt="Favourites Screen">
+  <img src="./app/screenshots/welcome-screen.jpeg" width="22%" alt="Welcome Screen">
+  <img src="./app/screenshots/home-screen.jpeg" width="22%" alt="Home Screen">
+  <img src="./app/screenshots/product-details.jpeg" width="22%" alt="Product Details Screen">
+  <img src="./app/screenshots/favourite-screen.jpeg" width="22%" alt="Favourites Screen">
 </p>
 
 <p align="center">
-  <img src="./screenshots/cart-screen.jpeg" width="22%" alt="Cart Screen">
-  <img src="./screenshots/payment-screen.jpeg" width="22%" alt="Payment Screen">
-  <img src="./screenshots/profile-screen.jpeg" width="22%" alt="Profile Screen">
+  <img src="./app/screenshots/cart-screen.jpeg" width="22%" alt="Cart Screen">
+  <img src="./app/screenshots/payment-screen.jpeg" width="22%" alt="Payment Screen">
+  <img src="./app/screenshots/profile-screen.jpeg" width="22%" alt="Profile Screen">
 </p>
 
 ---
