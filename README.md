@@ -16,6 +16,7 @@ A modern Android coffee ordering application built with **Kotlin** and **Jetpack
   <img src="./app/screenshots/cart-screen.jpeg" width="22%" alt="Cart Screen">
   <img src="./app/screenshots/payment-screen.jpeg" width="22%" alt="Payment Screen">
   <img src="./app/screenshots/profile-screen.jpeg" width="22%" alt="Profile Screen">
+
 </p>
 
 ---
