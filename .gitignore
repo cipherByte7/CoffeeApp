@@ -1,0 +1,14 @@
+# Android Studio
+.idea/
+*.iml
+
+# Build
+build/
+app/build/
+
+# Local properties
+local.properties
+
+# Backend
+backend/node_modules
+backend/.env
