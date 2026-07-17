@@ -40,15 +40,19 @@ import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.domain.model.Product
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.coffeeapp.Presentation.viewmodel.CartViewModel
 
 
 @Composable
 fun ProductCard(
     product: Product,
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    onAddToCart: (String) -> Unit
+){
 
-) {
+
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -133,7 +137,9 @@ fun ProductCard(
                 )
 
                 IconButton(
-                    onClick = { },
+                    onClick = {
+                        onAddToCart(product.id)
+                    },
                     modifier = Modifier
                         .background(LightBrown,
                             shape = RoundedCornerShape(10.dp)

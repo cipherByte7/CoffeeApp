@@ -18,6 +18,7 @@ import com.example.coffeeapp.domain.model.Product
 fun ProductsGrid(
     products: List<Product>,
     navController: NavController,
+    onAddToCart: (String) -> Unit,
     topContent: @Composable () -> Unit
 ){
     LazyColumn(
@@ -38,14 +39,16 @@ fun ProductsGrid(
                 ProductCard(
                     product = rowItems[0],
                     modifier = Modifier.weight(1f),
-                    navController = navController
+                    navController = navController,
+                    onAddToCart = onAddToCart
                 )
 
                 if(rowItems.size == 2){
                     ProductCard(
                         product = rowItems[1],
                         modifier = Modifier.weight(1f),
-                        navController = navController
+                        navController = navController,
+                        onAddToCart = onAddToCart
                     )
                 } else {
                     Spacer(modifier = Modifier.weight(1f))

@@ -22,9 +22,9 @@ fun FavouritesScreen(navController: NavController) {
     var favouriteProducts by remember {
         mutableStateOf(
             listOf(
-                Product(id = 1, "Expresso", "Strong & Rich", 15.99, R.drawable.expresso),
-                Product(id = 2, "Cappuccino", "Rich & Creamy", 18.99, R.drawable.cappuccino),
-                Product(id = 3, "Latte", "Creamy & Cold", 16.99, R.drawable.latte),
+                Product(id = "1", "Expresso", "Strong & Rich", 15.99, R.drawable.expresso),
+                Product(id = "2", "Cappuccino", "Rich & Creamy", 18.99, R.drawable.cappuccino),
+                Product(id = "3", "Latte", "Creamy & Cold", 16.99, R.drawable.latte),
             )
         )
     }

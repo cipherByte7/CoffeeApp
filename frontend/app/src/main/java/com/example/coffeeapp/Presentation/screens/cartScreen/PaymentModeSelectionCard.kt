@@ -37,15 +37,20 @@ import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.R
 
 @Composable
-fun PaymentModeSelectionCard(totalBill: Double) {
+fun PaymentModeSelectionCard(
+    totalBill: Double,
+    onPlaceOrder: (String) -> Unit = {}
+) {
 
     var expanded by remember { mutableStateOf(false) }
     var selectedMode by remember { mutableStateOf("Online") }
     val paymentModes = listOf("Cash", "Online", "Card")
 
     Card(
-        modifier = Modifier.fillMaxWidth()
-    ) {
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 22.dp)
+    ){
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
@@ -77,13 +82,14 @@ fun PaymentModeSelectionCard(totalBill: Double) {
                     )
 
                     Text(
-                        text = "₹$totalBill",
+                        text = "$%.2f".format(totalBill),
                         fontWeight = FontWeight.SemiBold,
                         color = LightBrown
                     )
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
+
 
                 Box {
                     Icon(
@@ -106,8 +112,6 @@ fun PaymentModeSelectionCard(totalBill: Double) {
                                         style = MaterialTheme.typography.bodyLarge
                                     )
                                 },
-
-
                                 onClick = {
                                     selectedMode = mode
                                     expanded = false
@@ -142,7 +146,9 @@ fun PaymentModeSelectionCard(totalBill: Double) {
             Spacer(modifier = Modifier.height(30.dp))
 
             Button(
-                onClick = { },
+                onClick = {
+                    onPlaceOrder(selectedMode)
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(55.dp),

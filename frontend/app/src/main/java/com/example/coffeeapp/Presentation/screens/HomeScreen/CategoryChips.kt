@@ -28,7 +28,7 @@ fun CategoryChips(text: String,
             .width(90.dp)
             .height(38.dp)
             .clip(RoundedCornerShape(8.dp))
-            .clickable{ isSelected }
+            .clickable{ onSelected() }
             .background(if (isSelected) LightBrown.copy(0.8f) else LightBrown.copy(0.2f)),
         contentAlignment = Alignment.Center
     ){

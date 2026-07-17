@@ -32,13 +32,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
-import com.example.coffeeapp.Presentation.viewmodel.CoffeeViewModel
+import com.example.coffeeapp.Presentation.viewmodel.CartViewModel
 import com.example.coffeeapp.R
+import com.example.coffeeapp.Presentation.viewmodel.CoffeeViewModel
 
 
 @Composable
 fun HomeScreen(navController: NavController){
     val location = "Pune, Maharashtra"
+
+    val cartViewModel: CartViewModel = viewModel()
 
     Scaffold(
         bottomBar = { BottomNavBar(navController, "Home") }
@@ -73,7 +76,10 @@ fun HomeScreen(navController: NavController){
 
             ProductsGrid(
                 products = viewModel.products,
-                navController = navController
+                navController = navController,
+                onAddToCart = { productId ->
+                    cartViewModel.addToCart(productId)
+                }
             ) {
                 Text(
                     text = "Location",
@@ -120,7 +126,10 @@ fun HomeScreen(navController: NavController){
 
 
                 )
-                HomeCategories()
+                HomeCategories(
+                    selectedCategory = viewModel.selectedCategory,
+                    onCategorySelected = viewModel::onCategorySelected
+                )
             }
 
         }

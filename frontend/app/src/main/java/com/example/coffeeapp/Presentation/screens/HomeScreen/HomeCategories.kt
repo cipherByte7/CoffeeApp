@@ -8,20 +8,43 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coffeeapp.Presentation.screens.HomeScreen.CategoryChips
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun HomeCategories() {
+fun HomeCategories(
+    selectedCategory: String,
+    onCategorySelected: (String?) -> Unit
+) {
 
     val categories = listOf(
         "All Coffee",
-        "Macchiato",
-        "Latte",
-        "Americano",
-        "Snacks",
-        "Desserts"
+        "Hot Coffee",
+        "Cold Coffee",
+        "Chocolate",
+        "Dessert Coffee"
     )
 
-    var selectedCategory by remember { mutableStateOf(categories.first()) }
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.padding(vertical = 12.dp)
+    ) {
 
+        items(categories) { category ->
 
+            CategoryChips(
+                text = category,
+                isSelected = selectedCategory == category,
+                onSelected = {
+
+                    if (category == "All Coffee") {
+                        onCategorySelected(null)
+                    } else {
+                        onCategorySelected(category)
+                    }
+
+                }
+            )
+
+        }
+
+    }
 }

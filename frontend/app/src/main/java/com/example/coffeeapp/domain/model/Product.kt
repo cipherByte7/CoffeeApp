@@ -1,7 +1,7 @@
 package com.example.coffeeapp.domain.model
 
 class Product(
-    val id: Int,
+    val id: String,
     val name: String,
     val description: String,
     val price: Double,

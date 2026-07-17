@@ -36,13 +36,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.Presentation.theme.LightBrown
-import com.example.coffeeapp.domain.model.Product
+import com.example.coffeeapp.domain.model.CartItem
 
 //@Preview
 @Composable
-fun CartItemCard(product: Product){
+fun CartItemCard(cartItem: CartItem,  onQuantityChange: (Int) -> Unit) {
 
-    var quantity by remember() {mutableStateOf(1) }
 
     Card(
         modifier = Modifier
@@ -63,7 +62,7 @@ fun CartItemCard(product: Product){
             //horizontalArrangement = Arrangement.Center
         ){
             Image(
-                painter = painterResource(id = product.imageResourceId),
+                painter = painterResource(id = cartItem.product.imageResourceId),
                 contentDescription = "Coffee Image",
                 modifier = Modifier
                     .size(70.dp)
@@ -76,10 +75,10 @@ fun CartItemCard(product: Product){
                     .weight(1f)
                     .padding(start = 12.dp)
             ) {
-                Text(text = product.name,
+                Text(text = cartItem.product.name,
                     fontWeight = FontWeight.SemiBold)
 
-                Text(text = product.description,
+                Text(text = cartItem.product.description,
                     color = Color.DarkGray)
             }
 
@@ -88,26 +87,31 @@ fun CartItemCard(product: Product){
             ) {
 
                 IconButton(
-                    onClick = { quantity-- },
-                    enabled = quantity > 1,
+                    onClick = {
+                        onQuantityChange(cartItem.quantity - 1)
+                    },
+                    enabled = cartItem.quantity > 0,
                     modifier = Modifier
                         .background(
                             color = LightBrown.copy(0.2f),
                             shape = CircleShape
                         )
-                    .size(30.dp)
-                    ) { Icon(imageVector = Icons.Default.Remove, contentDescription = "Remove", tint = LightBrown) }
+                        .size(30.dp)
+                ) { Icon(imageVector = Icons.Default.Remove, contentDescription = "Remove", tint = LightBrown) }
 
                 Spacer(modifier = Modifier.width(10.dp))
 
-                Text(text = quantity.toString(),
+                Text(text = cartItem.quantity.toString(),
                     fontSize = 20.sp,
                     modifier = Modifier.padding(horizontal = 8.dp))
 
                 Spacer(modifier = Modifier.width(10.dp))
 
                 IconButton(
-                    onClick = { quantity++ },
+                    onClick = {
+                        cartItem.quantity++
+                        onQuantityChange(cartItem.quantity)
+                    },
                     modifier = Modifier
                         .background(
                             color = LightBrown.copy(0.2f),

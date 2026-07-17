@@ -12,7 +12,10 @@ import com.example.coffeeapp.Presentation.screens.cartScreen.CartScreen
 import com.example.coffeeapp.Presentation.screens.favouriteScreen.FavouritesScreen
 import com.example.coffeeapp.Presentation.screens.profileScreen.ProfileScreen
 import com.example.coffeeapp.Presentation.screens.welcomeScreen.WelcomeScreen
-
+import com.example.coffeeapp.Presentation.screens.CheckoutScreen.CheckoutScreen
+import com.example.coffeeapp.Presentation.screens.orderHistoryScreen.OrderHistoryScreen
+import com.example.coffeeapp.Presentation.screens.orderSuccessScreen.OrderSuccessScreen
+import com.example.coffeeapp.Presentation.screens.orderDetailsScreen.OrderDetailsScreen
 @Composable
 fun NavGraph(){
     val navController = rememberNavController()
@@ -44,7 +47,28 @@ fun NavGraph(){
             ProfileScreen(navController)
         }
 
+        composable<Routes.CheckoutScreen>{
+            CheckoutScreen(navController)
+        }
 
+        composable<Routes.OrderSuccessScreen> {
+            OrderSuccessScreen(navController)
+        }
+
+        composable<Routes.OrderHistoryScreen> {
+            OrderHistoryScreen(navController)
+        }
+
+        composable<Routes.OrderDetailsScreen> { backStackEntry ->
+
+            val args = backStackEntry.toRoute<Routes.OrderDetailsScreen>()
+
+            OrderDetailsScreen(
+                orderId = args.orderId,
+                navController = navController
+            )
+
+        }
 
     }
 }
