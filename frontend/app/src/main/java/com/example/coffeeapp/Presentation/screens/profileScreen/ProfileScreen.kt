@@ -56,6 +56,7 @@ import com.example.coffeeapp.data.remote.RetrofitInstance
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import com.example.coffeeapp.Presentation.viewmodel.ProfileViewModel
 
 @Composable
 fun ProfileScreen(navController: NavController) {
@@ -76,6 +77,8 @@ fun ProfileScreen(navController: NavController) {
             androidx.compose.ui.platform.LocalContext.current.applicationContext as android.app.Application
         )
     )
+
+    val profileViewModel: ProfileViewModel = viewModel()
 
     val isDarkTheme by themeViewModel.isDarkTheme.collectAsStateWithLifecycle()
 
@@ -116,14 +119,11 @@ fun ProfileScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    "Aaditya Chitale",
-                    modifier = Modifier,
-                    style = MaterialTheme.typography.headlineLarge,
-
-                    )
+                    text = profileViewModel.user?.name ?: "Loading...",
+                    style = MaterialTheme.typography.headlineLarge
+                )
                 Text(
-                    "adityaschitale0816@gmail.com",
-                    modifier = Modifier,
+                    text = profileViewModel.user?.email ?: "",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Gray
                 )
@@ -131,23 +131,6 @@ fun ProfileScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(35.dp))
 
-            Text(
-                "Address",
-                modifier = Modifier,
-                fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.bodyLarge,
-                fontSize = 20.sp
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                "IIIT Bhubaneswar,\n" +
-                        "Gothapatna, \n" +
-                        "Odisha, \n" +
-                        "751003",
-                modifier = Modifier,
-                style = MaterialTheme.typography.bodyMedium,
-
-                )
 
             Spacer(modifier = Modifier.height(28.dp))
 

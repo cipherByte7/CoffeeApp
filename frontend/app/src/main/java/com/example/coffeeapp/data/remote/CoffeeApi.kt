@@ -66,5 +66,7 @@ interface CoffeeApi {
         @Body request: LoginRequest
     ): Response<LoginResponse>
 
+    @GET("api/auth/profile")
+    suspend fun getProfile(): Response<UserDto>
 
 }

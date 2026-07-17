@@ -3,14 +3,17 @@ package com.example.coffeeapp.data.repository
 import com.example.coffeeapp.data.mapper.toCartItem
 import com.example.coffeeapp.data.mapper.toOrder
 import com.example.coffeeapp.data.mapper.toProduct
+import com.example.coffeeapp.data.mapper.toUser
 import com.example.coffeeapp.data.remote.AddToCartRequest
 import com.example.coffeeapp.data.remote.PlaceOrderRequest
 import com.example.coffeeapp.data.remote.RetrofitInstance
 import com.example.coffeeapp.data.remote.ToggleFavoriteRequest
 import com.example.coffeeapp.data.remote.UpdateCartRequest
+import com.example.coffeeapp.data.remote.UserDto
 import com.example.coffeeapp.domain.model.CartItem
 import com.example.coffeeapp.domain.model.Order
 import com.example.coffeeapp.domain.model.Product
+import com.example.coffeeapp.domain.model.User
 
 
 class CoffeeRepository {
@@ -199,6 +202,24 @@ class CoffeeRepository {
 
             emptyList()
 
+        }
+
+    }
+
+    suspend fun getProfile(): User? {
+
+        return try {
+
+            val response = RetrofitInstance.api.getProfile()
+
+            if (response.isSuccessful) {
+                response.body()?.toUser()
+            } else {
+                null
+            }
+
+        } catch (e: Exception) {
+            null
         }
 
     }
