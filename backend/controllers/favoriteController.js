@@ -1,14 +1,12 @@
 const Favorite = require("../models/favoriteModel");
 
-const USER_ID = "6a5930c0794e8cbd295cccf8";
-
 // POST /api/favorites/toggle
 const toggleFavorite = async (req, res) => {
   try {
     const { productId } = req.body;
 
     const existingFavorite = await Favorite.findOne({
-      user: USER_ID,
+      user: req.userId,
       product: productId,
     });
 
@@ -22,7 +20,7 @@ const toggleFavorite = async (req, res) => {
     }
 
     await Favorite.create({
-      user: USER_ID,
+      user: req.userId,
       product: productId,
     });
 
@@ -43,7 +41,7 @@ const getFavorites = async (req, res) => {
   try {
 
     const favorites = await Favorite.find({
-      user: USER_ID,
+      user: req.userId,
     }).populate("product");
 
     res.json(favorites);

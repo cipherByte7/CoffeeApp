@@ -1,6 +1,5 @@
 const Order = require("../models/orderModel");
 const Cart = require("../models/cartModel");
-const USER_ID = "6a5930c0794e8cbd295cccf8";
 
 // POST /api/orders
 const placeOrder = async (req, res) => {
@@ -8,11 +7,11 @@ const placeOrder = async (req, res) => {
 
     console.log("========== PLACE ORDER ==========");
     console.log("BODY:", req.body);
-    
+
     const { paymentMode } = req.body;
 
     const cartItems = await Cart.find({
-      user: USER_ID,
+      user: req.userId,
     }).populate("product");
 
     if (cartItems.length === 0) {
@@ -33,7 +32,7 @@ const placeOrder = async (req, res) => {
     );
 
     const order = await Order.create({
-      user: USER_ID,
+      user: req.userId,
       items,
       totalAmount,
       paymentMode,
@@ -41,7 +40,7 @@ const placeOrder = async (req, res) => {
 
     // Clear the cart after the order is placed
     await Cart.deleteMany({
-      user: USER_ID,
+      user: req.userId,
     });
     const populatedOrder = await Order.findById(order._id).populate(
       "items.product",
@@ -59,7 +58,7 @@ const placeOrder = async (req, res) => {
 const getOrders = async (req, res) => {
   try {
     const orders = await Order.find({
-      user:USER_ID,
+      user: req.userId,
     })
       .sort({ createdAt: -1 })
       .populate("items.product");
@@ -75,7 +74,10 @@ const getOrders = async (req, res) => {
 // GET /api/orders/:id
 const getOrderById = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id).populate("items.product");
+    const order = await Order.findOne({
+        _id: req.params.id,
+        user: req.userId,
+    }).populate("items.product");
 
     if (!order) {
       return res.status(404).json({

@@ -55,4 +55,16 @@ interface CoffeeApi {
 
     @GET("api/favorites")
     suspend fun getFavorites(): Response<List<FavoriteDto>>
+
+    @POST("api/auth/register")
+    suspend fun register(
+        @Body request: RegisterRequest
+    ): Response<RegisterResponse>
+
+    @POST("api/auth/login")
+    suspend fun login(
+        @Body request: LoginRequest
+    ): Response<LoginResponse>
+
+
 }

@@ -5,22 +5,21 @@ package com.example.coffeeapp.Presentation.screens.profileScreen
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,9 +37,47 @@ import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
+import androidx.compose.material3.Switch
+import androidx.compose.material3.TextButton
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModelProvider
+import com.example.coffeeapp.Presentation.ui_components.ProfileMenuItem
+import com.example.coffeeapp.Presentation.viewmodel.ThemeViewModel
+import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.rememberCoroutineScope
+import com.example.coffeeapp.data.datastore.TokenManager
+import com.example.coffeeapp.data.remote.RetrofitInstance
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 @Composable
 fun ProfileScreen(navController: NavController) {
+    var showAboutDialog by remember {
+        mutableStateOf(false)
+    }
+
+    val context = LocalContext.current
+
+    val tokenManager = remember {
+        TokenManager(context)
+    }
+
+    val scope = rememberCoroutineScope()
+
+    val themeViewModel: ThemeViewModel = viewModel(
+        factory = ViewModelProvider.AndroidViewModelFactory.getInstance(
+            androidx.compose.ui.platform.LocalContext.current.applicationContext as android.app.Application
+        )
+    )
+
+    val isDarkTheme by themeViewModel.isDarkTheme.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = { ProfileScreenTopAppBar() },
@@ -49,9 +86,10 @@ fun ProfileScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp)
-                .padding(innerPadding),
-        ) {
+                .padding(innerPadding)
+        ){
             Column(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -118,89 +156,132 @@ fun ProfileScreen(navController: NavController) {
                     .fillMaxWidth()
             ) {
                 Column(
-                    modifier = Modifier
-                        .padding(16.dp )
+                    modifier = Modifier.padding(16.dp)
                 ) {
 
+                    ProfileMenuItem(
+                        icon = Icons.Default.ShoppingCart,
+                        title = "My Orders",
+                        onClick = {
+                            navController.navigate(Routes.OrderHistoryScreen)
+                        }
+                    )
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                navController.navigate(Routes.OrderHistoryScreen)
-                            },
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ShoppingCart,
-                            contentDescription = "Orders",
-                            tint = LightBrown
-                        )
+                    ProfileMenuItem(
+                        icon = Icons.Default.Favorite,
+                        title = "Favourites",
+                        onClick = {
+                            navController.navigate(Routes.FavouritesScreen)
+                        }
+                    )
 
-                        Spacer(modifier = Modifier.width(8.dp))
+                    ProfileMenuItem(
+                        icon = Icons.Default.WbSunny,
+                        title = "Dark Mode",
+                        trailingContent = {
+                            Switch(
+                                checked = isDarkTheme,
+                                onCheckedChange = {
+                                    themeViewModel.toggleTheme(it)
+                                }
+                            )
+                        }
+                    )
 
-                        Text("My Orders")
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
+                    ProfileMenuItem(
+                        icon = Icons.Default.Info,
+                        title = "About App",
+                        onClick = {
+                            showAboutDialog = true
+                        }
+                    )
 
-                    Row(
-                        modifier = Modifier
-                            .clickable{
-                                navController.navigate(Routes.FavouritesScreen)
-                            },
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Favorite,
-                            contentDescription = "Favourite",
-                            tint = LightBrown
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            "Favourites",
-                        )
-                    }
+                    ProfileMenuItem(
+                        icon = Icons.Default.Logout,
+                        title = "Logout",
+                        onClick = {
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                            scope.launch {
 
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.WbSunny,
-                            contentDescription = "Theme",
-                            tint = LightBrown
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            "Theme",
-                        )
+                                tokenManager.clearToken()
 
-                    }
+                                RetrofitInstance.setToken(null)
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                                navController.navigate(Routes.WelcomeScreen) {
 
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings",
-                            tint = LightBrown
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            "Settings",
-                        )
+                                    popUpTo(navController.graph.startDestinationId) {
+                                        inclusive = true
+                                    }
 
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
+                                    launchSingleTop = true
+                                }
+                            }
+                        }
+                    )
 
                 }
             }
 
         }
 
+    }
+
+    if (showAboutDialog) {
+
+        AlertDialog(
+
+            onDismissRequest = {
+                showAboutDialog = false
+            },
+
+            confirmButton = {
+
+                TextButton(
+                    onClick = {
+                        showAboutDialog = false
+                    }
+                ) {
+                    Text("Close")
+                }
+
+            },
+
+            title = {
+                Text("☕ Coffee App")
+            },
+
+            text = {
+
+                Column {
+
+                    Text("Version 1.0.0")
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text("Built with")
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text("• Kotlin")
+                    Text("• Jetpack Compose")
+                    Text("• Node.js")
+                    Text("• Express.js")
+                    Text("• MongoDB")
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text("Developed by")
+
+                    Text(
+                        "Aaditya Chitale",
+                        fontWeight = FontWeight.SemiBold
+                    )
+
+                }
+
+            }
+
+        )
     }
 
 }

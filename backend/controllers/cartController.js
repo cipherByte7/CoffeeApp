@@ -1,5 +1,5 @@
 const Cart = require("../models/cartModel");
-const USER_ID = "6a5930c0794e8cbd295cccf8";
+
 
 // POST /api/cart
 const addToCart = async (req, res) => {
@@ -12,7 +12,7 @@ const addToCart = async (req, res) => {
     console.log("REQUEST BODY:", req.body);
 
     let cartItem = await Cart.findOne({
-     user: USER_ID,
+     user: req.userId,
       product: productId,
     });
 
@@ -23,7 +23,7 @@ const addToCart = async (req, res) => {
       await cartItem.save();
     } else {
       cartItem = await Cart.create({
-       user: USER_ID,
+       user: req.userId,
         product: productId,
         quantity: 1,
       });
@@ -55,7 +55,7 @@ const getCart = async (req, res) => {
     console.log("USER ID:", req.userId);
 
     const cartItems = await Cart.find({
-      user: USER_ID,
+      user: req.userId,
     }).populate("product");
 
     console.log("CART ITEMS:", cartItems);
@@ -79,7 +79,7 @@ const updateCartQuantity = async (req, res) => {
 
     const cartItem = await Cart.findOne({
       _id: id,
-     user: USER_ID,
+     user: req.userId,
     });
 
     if (!cartItem) {

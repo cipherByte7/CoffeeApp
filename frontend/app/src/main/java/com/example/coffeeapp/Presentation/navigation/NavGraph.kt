@@ -3,7 +3,8 @@ package com.example.coffeeapp.Presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-
+import com.example.coffeeapp.Presentation.screens.LoginScreen
+import com.example.coffeeapp.Presentation.screens.RegisterScreen
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.coffeeapp.Presentation.screens.DetailScreen.DetailScreen
@@ -68,6 +69,14 @@ fun NavGraph(){
                 navController = navController
             )
 
+        }
+
+        composable<Routes.LoginScreen> {
+            LoginScreen(navController)
+        }
+
+        composable<Routes.RegisterScreen> {
+            RegisterScreen(navController)
         }
 
     }

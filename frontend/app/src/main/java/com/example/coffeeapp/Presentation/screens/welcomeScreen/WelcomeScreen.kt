@@ -20,16 +20,40 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.R
 import com.example.coffeeapp.Presentation.theme.Poppins
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import com.example.coffeeapp.data.datastore.TokenManager
+import com.example.coffeeapp.data.remote.RetrofitInstance
 
 @Composable
 fun WelcomeScreen(navController: NavHostController){
+    val context = LocalContext.current
+
+    val tokenManager = remember {
+        TokenManager(context)
+    }
+    LaunchedEffect(Unit) {
+
+        val token = tokenManager.getToken()
+
+        if (!token.isNullOrEmpty()) {
+
+            RetrofitInstance.setToken(token)
+
+            navController.navigate(Routes.HomeScreen) {
+                popUpTo<Routes.WelcomeScreen> {
+                    inclusive = true
+                }
+            }
+        }
+    }
     Box(modifier = Modifier.fillMaxSize().background(color = Color.Black)){
         Image(
             painter = painterResource(R.drawable.welcomescreen),
@@ -66,7 +90,7 @@ fun WelcomeScreen(navController: NavHostController){
         Spacer(modifier = Modifier.height(440.dp))
 
         Button(
-            onClick = {navController.navigate(Routes.HomeScreen)},
+            onClick = {navController.navigate(Routes.LoginScreen)},
             modifier = Modifier.fillMaxWidth().height(55.dp),
             shape = RoundedCornerShape(28),
             colors = ButtonDefaults.buttonColors(
