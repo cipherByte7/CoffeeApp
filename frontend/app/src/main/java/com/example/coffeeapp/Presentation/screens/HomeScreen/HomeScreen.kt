@@ -35,6 +35,7 @@ import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
 import com.example.coffeeapp.Presentation.viewmodel.CartViewModel
 import com.example.coffeeapp.R
 import com.example.coffeeapp.Presentation.viewmodel.CoffeeViewModel
+import com.example.coffeeapp.Presentation.viewmodel.FavoriteViewModel
 
 
 @Composable
@@ -42,6 +43,8 @@ fun HomeScreen(navController: NavController){
     val location = "Pune, Maharashtra"
 
     val cartViewModel: CartViewModel = viewModel()
+
+    val favoriteViewModel: FavoriteViewModel = viewModel()
 
     Scaffold(
         bottomBar = { BottomNavBar(navController, "Home") }
@@ -79,6 +82,12 @@ fun HomeScreen(navController: NavController){
                 navController = navController,
                 onAddToCart = { productId ->
                     cartViewModel.addToCart(productId)
+                },
+                isFavorite = { productId ->
+                    favoriteViewModel.isFavorite(productId)
+                },
+                onToggleFavorite = { productId ->
+                    favoriteViewModel.toggleFavorite(productId)
                 }
             ) {
                 Text(

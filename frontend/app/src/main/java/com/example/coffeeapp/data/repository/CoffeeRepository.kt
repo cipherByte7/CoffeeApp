@@ -6,6 +6,7 @@ import com.example.coffeeapp.data.mapper.toProduct
 import com.example.coffeeapp.data.remote.AddToCartRequest
 import com.example.coffeeapp.data.remote.PlaceOrderRequest
 import com.example.coffeeapp.data.remote.RetrofitInstance
+import com.example.coffeeapp.data.remote.ToggleFavoriteRequest
 import com.example.coffeeapp.data.remote.UpdateCartRequest
 import com.example.coffeeapp.domain.model.CartItem
 import com.example.coffeeapp.domain.model.Order
@@ -153,5 +154,52 @@ class CoffeeRepository {
         } catch (e: Exception) {
             null
         }
+    }
+
+    suspend fun toggleFavorite(productId: String): Boolean {
+
+        return try {
+
+            val response = RetrofitInstance.api.toggleFavorite(
+                ToggleFavoriteRequest(productId)
+            )
+
+            if (response.isSuccessful) {
+                response.body()?.favorite ?: false
+            } else {
+                false
+            }
+
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    suspend fun getFavorites(): List<Product> {
+
+        return try {
+
+            val response = RetrofitInstance.api.getFavorites()
+
+            if (response.isSuccessful) {
+
+                response.body()?.map {
+
+                    it.product.toProduct()
+
+                } ?: emptyList()
+
+            } else {
+
+                emptyList()
+
+            }
+
+        } catch (e: Exception) {
+
+            emptyList()
+
+        }
+
     }
 }

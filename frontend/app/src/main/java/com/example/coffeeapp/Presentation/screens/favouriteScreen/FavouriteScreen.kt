@@ -5,28 +5,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
-import com.example.coffeeapp.R
-import com.example.coffeeapp.domain.model.Product
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.coffeeapp.Presentation.viewmodel.FavoriteViewModel
+import androidx.compose.runtime.LaunchedEffect
+
 
 
 @Composable
 fun FavouritesScreen(navController: NavController) {
-    var favouriteProducts by remember {
-        mutableStateOf(
-            listOf(
-                Product(id = "1", "Expresso", "Strong & Rich", 15.99, R.drawable.expresso),
-                Product(id = "2", "Cappuccino", "Rich & Creamy", 18.99, R.drawable.cappuccino),
-                Product(id = "3", "Latte", "Creamy & Cold", 16.99, R.drawable.latte),
-            )
-        )
+    val favoriteViewModel: FavoriteViewModel = viewModel()
+    LaunchedEffect(Unit) {
+        favoriteViewModel.loadFavorites()
     }
 
     Scaffold(
@@ -42,11 +35,11 @@ fun FavouritesScreen(navController: NavController) {
 
         ) {
             item {
-                favouriteProducts.forEach { product ->
+                favoriteViewModel.favorites.forEach { product ->
                     FavouriteItemCard(
                         product,
                         onRemove = {
-                            favouriteProducts = favouriteProducts - product
+                            favoriteViewModel.toggleFavorite(product.id)
                         }
                     )
                 }

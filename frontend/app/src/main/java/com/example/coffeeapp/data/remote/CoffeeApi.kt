@@ -47,4 +47,12 @@ interface CoffeeApi {
     suspend fun getOrderById(
         @Path("id") id: String
     ): Response<OrderDto>
+
+    @POST("api/favorites/toggle")
+    suspend fun toggleFavorite(
+        @Body request: ToggleFavoriteRequest
+    ): Response<ToggleFavoriteResponse>
+
+    @GET("api/favorites")
+    suspend fun getFavorites(): Response<List<FavoriteDto>>
 }

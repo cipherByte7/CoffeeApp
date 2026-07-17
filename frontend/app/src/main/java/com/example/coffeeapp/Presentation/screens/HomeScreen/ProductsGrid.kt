@@ -19,6 +19,8 @@ fun ProductsGrid(
     products: List<Product>,
     navController: NavController,
     onAddToCart: (String) -> Unit,
+    isFavorite: (String) -> Boolean,
+    onToggleFavorite: (String) -> Unit,
     topContent: @Composable () -> Unit
 ){
     LazyColumn(
@@ -40,15 +42,20 @@ fun ProductsGrid(
                     product = rowItems[0],
                     modifier = Modifier.weight(1f),
                     navController = navController,
-                    onAddToCart = onAddToCart
+                    onAddToCart = onAddToCart,
+                    isFavorite = isFavorite(rowItems[0].id),
+                    onToggleFavorite = onToggleFavorite
                 )
 
-                if(rowItems.size == 2){
+
+                if (rowItems.size == 2) {
                     ProductCard(
                         product = rowItems[1],
                         modifier = Modifier.weight(1f),
                         navController = navController,
-                        onAddToCart = onAddToCart
+                        onAddToCart = onAddToCart,
+                        isFavorite = isFavorite(rowItems[1].id),
+                        onToggleFavorite = onToggleFavorite
                     )
                 } else {
                     Spacer(modifier = Modifier.weight(1f))

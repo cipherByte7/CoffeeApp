@@ -22,7 +22,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
-import com.example.coffeeapp.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,8 +39,10 @@ import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.domain.model.Product
 import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import com.example.coffeeapp.Presentation.viewmodel.FavoriteViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.coffeeapp.Presentation.viewmodel.CartViewModel
 
 
 @Composable
@@ -49,9 +50,12 @@ fun ProductCard(
     product: Product,
     modifier: Modifier = Modifier,
     navController: NavController,
-    onAddToCart: (String) -> Unit
+    onAddToCart: (String) -> Unit,
+    isFavorite: Boolean,
+    onToggleFavorite: (String) -> Unit
 ){
 
+    val favoriteViewModel: FavoriteViewModel = viewModel()
 
     Card(
         modifier = modifier
@@ -88,17 +92,26 @@ fun ProductCard(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(8.dp)
-                        .background(IvoryWhite.copy(1f),
-                            shape = RoundedCornerShape(12.dp)
+                        .background(
+                            IvoryWhite,
+                            RoundedCornerShape(12.dp)
                         )
+                        .clickable {
+                            onToggleFavorite(product.id)
+                        }
                         .padding(horizontal = 8.dp, vertical = 4.dp)
-                ){
+                ) {
+
                     Icon(
-                        painter = painterResource(R.drawable.regular_outline_heart),
-                        contentDescription = "Add to Favourites",
+                        imageVector = if (isFavorite)
+                            Icons.Filled.Favorite
+                        else
+                            Icons.Outlined.FavoriteBorder,
+                        contentDescription = "Favorite",
                         tint = LightBrown,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(22.dp)
                     )
+
                 }
             }
 
