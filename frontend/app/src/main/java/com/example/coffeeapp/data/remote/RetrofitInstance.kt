@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
 
-    private const val BASE_URL = "http://10.205.71.178:5000/"
+    private const val BASE_URL = "https://coffee-backend-api-z6zm.onrender.com/"
 
     private var authToken: String? = null
 
