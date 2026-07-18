@@ -76,44 +76,64 @@ You can download and install the latest Android APK from the GitHub Releases pag
 
 # 📱 Screenshots
 
-<p align="center">
-  <img src="screenshots/welcome.jpg" width="220"/>
-  <img src="screenshots/login.jpg" width="220"/>
-  <img src="screenshots/register.jpg" width="220"/>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="screenshots/welcome.jpg" width="220"/><br>
+      <b>Welcome</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/login.jpg" width="220"/><br>
+      <b>Login</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/register.jpg" width="220"/><br>
+      <b>Register</b>
+    </td>
+  </tr>
 
-<p align="center"><b>Welcome • Login • Register</b></p>
+  <tr>
+    <td align="center">
+      <img src="screenshots/home.jpg" width="220"/><br>
+      <b>Home</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/cart.jpg" width="220"/><br>
+      <b>Cart</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/checkout.jpg" width="220"/><br>
+      <b>Checkout</b>
+    </td>
+  </tr>
 
-<br>
+  <tr>
+    <td align="center">
+      <img src="screenshots/order_success.jpg" width="220"/><br>
+      <b>Order Success</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/favourites.jpg" width="220"/><br>
+      <b>Favorites</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/orders.jpg" width="220"/><br>
+      <b>Orders</b>
+    </td>
+  </tr>
 
-<p align="center">
-  <img src="screenshots/home.jpg" width="220"/>
-  <img src="screenshots/cart.jpg" width="220"/>
-  <img src="screenshots/checkout.jpg" width="220"/>
-</p>
-
-<p align="center"><b>Home • Cart • Checkout</b></p>
-
-<br>
-
-<p align="center">
-  <img src="screenshots/order_success.jpg" width="220"/>
-  <img src="screenshots/favourites.jpg" width="220"/>
-  <img src="screenshots/orders.jpg" width="220"/>
-</p>
-
-<p align="center"><b>Order Success • Favorites • Orders</b></p>
-
-<br>
-
-<p align="center">
-  <img src="screenshots/profile.jpg" width="220"/>
-  <img src="screenshots/about_app.jpg" width="220"/>
-</p>
-
-<p align="center"><b>Profile • About App</b></p>
-
----
+  <tr>
+    <td align="center">
+      <img src="screenshots/profile.jpg" width="220"/><br>
+      <b>Profile</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/about_app.jpg" width="220"/><br>
+      <b>About App</b>
+    </td>
+    <td></td>
+  </tr>
+</table>---
 
 # 🏗️ Architecture
 
