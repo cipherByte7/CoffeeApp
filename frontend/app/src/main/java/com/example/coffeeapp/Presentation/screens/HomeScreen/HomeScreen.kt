@@ -88,7 +88,8 @@ fun HomeScreen(navController: NavController){
                 },
                 onToggleFavorite = { productId ->
                     favoriteViewModel.toggleFavorite(productId)
-                }
+                },
+                isLoading = viewModel.isLoading
             ) {
                 Text(
                     text = "Location",

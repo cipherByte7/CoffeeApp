@@ -20,6 +20,9 @@ class CoffeeViewModel : ViewModel() {
     var products by mutableStateOf<List<Product>>(emptyList())
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     var searchText by mutableStateOf("")
         private set
 
@@ -30,8 +33,12 @@ class CoffeeViewModel : ViewModel() {
     private fun loadProducts() {
         viewModelScope.launch {
 
+            isLoading = true
+
             allProducts = repository.getProducts()
             products = allProducts
+
+            isLoading = false
 
         }
     }

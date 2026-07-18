@@ -20,13 +20,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,9 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
-import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.domain.model.Product
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -64,7 +62,7 @@ fun ProductCard(
             .clickable { navController.navigate(Routes.DetailScreen(product.id))},
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = IvoryWhite
+            containerColor = MaterialTheme.colorScheme.surface
         ),
 
     ) {
@@ -93,7 +91,7 @@ fun ProductCard(
                         .align(Alignment.TopEnd)
                         .padding(8.dp)
                         .background(
-                            IvoryWhite,
+                            MaterialTheme.colorScheme.surface,
                             RoundedCornerShape(12.dp)
                         )
                         .clickable {
@@ -108,7 +106,7 @@ fun ProductCard(
                         else
                             Icons.Outlined.FavoriteBorder,
                         contentDescription = "Favorite",
-                        tint = LightBrown,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(22.dp)
                     )
 
@@ -119,15 +117,18 @@ fun ProductCard(
 
             Text(text = product.name,
                 fontFamily = Poppins,
-                color = Color.Black,
-                fontSize = 20.sp
+                color = MaterialTheme.colorScheme.onSurface,
+                fontSize = 20.sp,
+                maxLines = 2,
+                minLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
 
            // Spacer(modifier = Modifier.height(4.dp))
 
             Text(text = product.description,
                 fontFamily = Poppins,
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontSize = 10.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
@@ -145,7 +146,7 @@ fun ProductCard(
                     text = "$" + product.price,
                     style = typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        color = LightBrown,
+                        color = MaterialTheme.colorScheme.primary,
                     )
                 )
 
@@ -154,14 +155,14 @@ fun ProductCard(
                         onAddToCart(product.id)
                     },
                     modifier = Modifier
-                        .background(LightBrown,
+                        .background(MaterialTheme.colorScheme.primary,
                             shape = RoundedCornerShape(10.dp)
                         )
                     ) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = "Add",
-                        tint = Color.White
+                        tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             }

@@ -19,6 +19,9 @@ class FavoriteViewModel : ViewModel() {
     var favoriteIds by mutableStateOf<Set<String>>(emptySet())
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     init {
         loadFavorites()
     }
@@ -27,11 +30,15 @@ class FavoriteViewModel : ViewModel() {
 
         viewModelScope.launch {
 
+            isLoading = true
+
             favorites = repository.getFavorites()
 
             favoriteIds = favorites.map {
                 it.id
             }.toSet()
+
+            isLoading = false
 
         }
 

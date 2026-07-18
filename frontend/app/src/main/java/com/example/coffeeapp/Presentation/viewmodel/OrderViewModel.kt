@@ -16,6 +16,9 @@ class OrderViewModel : ViewModel() {
     var orders by mutableStateOf<List<Order>>(emptyList())
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     init {
         loadOrders()
     }
@@ -24,11 +27,15 @@ class OrderViewModel : ViewModel() {
 
         viewModelScope.launch {
 
+            isLoading = true
+
             val list = repository.getOrders()
 
             android.util.Log.d("ORDER_TEST", list.toString())
 
             orders = list
+
+            isLoading = false
 
         }
 

@@ -18,6 +18,9 @@ class CartViewModel : ViewModel() {
     var cartItems by mutableStateOf<List<CartItem>>(emptyList())
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     init {
         loadCart()
     }
@@ -28,11 +31,15 @@ class CartViewModel : ViewModel() {
     fun loadCart() {
         viewModelScope.launch {
 
+            isLoading = true
+
             val items = repository.getCart()
 
             Log.d("COFFEE_CART", "Cart size = ${items.size}")
 
             cartItems = items
+
+            isLoading = false
         }
     }
 

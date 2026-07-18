@@ -28,14 +28,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffeeapp.Presentation.theme.IvoryWhite
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.domain.model.CartItem
 
 //@Preview
@@ -48,7 +45,7 @@ fun CartItemCard(cartItem: CartItem,  onQuantityChange: (Int) -> Unit) {
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = IvoryWhite,
+            containerColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onSurface
         ),
         elevation = CardDefaults.cardElevation(4.dp)
@@ -79,7 +76,7 @@ fun CartItemCard(cartItem: CartItem,  onQuantityChange: (Int) -> Unit) {
                     fontWeight = FontWeight.SemiBold)
 
                 Text(text = cartItem.product.description,
-                    color = Color.DarkGray)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
 
             Row(
@@ -93,11 +90,11 @@ fun CartItemCard(cartItem: CartItem,  onQuantityChange: (Int) -> Unit) {
                     enabled = cartItem.quantity > 0,
                     modifier = Modifier
                         .background(
-                            color = LightBrown.copy(0.2f),
+                            color = MaterialTheme.colorScheme.primary.copy(0.15f),
                             shape = CircleShape
                         )
                         .size(30.dp)
-                ) { Icon(imageVector = Icons.Default.Remove, contentDescription = "Remove", tint = LightBrown) }
+                ) { Icon(imageVector = Icons.Default.Remove, contentDescription = "Remove", tint = MaterialTheme.colorScheme.primary) }
 
                 Spacer(modifier = Modifier.width(10.dp))
 
@@ -114,11 +111,11 @@ fun CartItemCard(cartItem: CartItem,  onQuantityChange: (Int) -> Unit) {
                     },
                     modifier = Modifier
                         .background(
-                            color = LightBrown.copy(0.2f),
+                            color = MaterialTheme.colorScheme.primary.copy(0.15f),
                             shape = CircleShape
                         )
                         .size(30.dp)
-                ){ Icon(imageVector = Icons.Default.Add, contentDescription = "Add", tint = LightBrown) }
+                ){ Icon(imageVector = Icons.Default.Add, contentDescription = "Add", tint = MaterialTheme.colorScheme.primary) }
 
             }
         }

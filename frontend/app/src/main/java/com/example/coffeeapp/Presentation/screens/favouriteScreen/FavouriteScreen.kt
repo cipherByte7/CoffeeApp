@@ -16,6 +16,7 @@ import com.example.coffeeapp.Presentation.viewmodel.FavoriteViewModel
 import androidx.compose.runtime.LaunchedEffect
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.Presentation.ui_components.EmptyState
+import com.example.coffeeapp.Presentation.ui_components.LoadingIndicator
 
 
 @Composable
@@ -29,7 +30,11 @@ fun FavouritesScreen(navController: NavController) {
         topBar = { FavouriteScreenTopAppBar() },
         bottomBar = { BottomNavBar(navController = navController, "Favourites") }
     ) { innerPadding ->
-        if (favoriteProducts.isEmpty()) {
+        if (favoriteViewModel.isLoading && favoriteProducts.isEmpty()) {
+
+            LoadingIndicator(modifier = Modifier.padding(innerPadding))
+
+        } else if (favoriteProducts.isEmpty()) {
 
             EmptyState(
                 icon = Icons.Outlined.FavoriteBorder,

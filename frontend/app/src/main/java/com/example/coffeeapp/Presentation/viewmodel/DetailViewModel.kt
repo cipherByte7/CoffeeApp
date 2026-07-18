@@ -16,11 +16,18 @@ class DetailViewModel : ViewModel() {
     var product by mutableStateOf<Product?>(null)
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     fun loadProduct(productId: String) {
 
         viewModelScope.launch {
 
+            isLoading = true
+
             product = repository.getProductById(productId)
+
+            isLoading = false
 
         }
     }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.R
+import androidx.compose.material3.TopAppBarDefaults
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,10 +32,10 @@ fun CartScreenTopAppBar(navController: NavController){
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
             fontFamily = Poppins,
-            //horizontalArrangement = Arrangement.Center
         )
-
-
         },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.background
+        ),
     )
 }

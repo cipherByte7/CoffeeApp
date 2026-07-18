@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,8 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffeeapp.Presentation.theme.IvoryWhite
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.domain.model.Order
 import java.text.SimpleDateFormat
@@ -35,7 +34,7 @@ private fun StatusColor(status: String): Color {
 
         "Cancelled" -> Color.Red
 
-        else -> LightBrown
+        else -> MaterialTheme.colorScheme.primary
 
     }
 
@@ -76,7 +75,7 @@ fun OrderCard(
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = IvoryWhite
+            containerColor = MaterialTheme.colorScheme.surface
         ),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(5.dp)
@@ -93,7 +92,7 @@ fun OrderCard(
                 Icon(
                     imageVector = Icons.Default.Coffee,
                     contentDescription = null,
-                    tint = LightBrown
+                    tint = MaterialTheme.colorScheme.primary
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
@@ -132,7 +131,7 @@ fun OrderCard(
             Text(
                 text = "${order.items.size} Items",
                 fontFamily = Poppins,
-                color = Color.Gray
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Spacer(modifier = Modifier.height(6.dp))
@@ -140,7 +139,7 @@ fun OrderCard(
             Text(
                 text = order.paymentMode,
                 fontFamily = Poppins,
-                color = Color.DarkGray
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -150,7 +149,7 @@ fun OrderCard(
                 Text(
                     "Total",
                     fontFamily = Poppins,
-                    color = Color.Gray
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
@@ -159,7 +158,7 @@ fun OrderCard(
                     "$${"%.2f".format(order.totalAmount)}",
                     fontFamily = Poppins,
                     fontWeight = FontWeight.Bold,
-                    color = LightBrown
+                    color = MaterialTheme.colorScheme.primary
                 )
 
             }
@@ -173,7 +172,7 @@ fun OrderCard(
                 Icon(
                     imageVector = Icons.Default.DateRange,
                     contentDescription = null,
-                    tint = LightBrown
+                    tint = MaterialTheme.colorScheme.primary
                 )
 
                 Spacer(modifier = Modifier.width(6.dp))
@@ -181,7 +180,7 @@ fun OrderCard(
                 Text(
                     text = formatDate(order.createdAt),
                     fontFamily = Poppins,
-                    color = Color.Gray
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
 
             }

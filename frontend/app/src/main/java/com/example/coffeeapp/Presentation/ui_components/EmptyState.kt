@@ -15,10 +15,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 
 @Composable
@@ -42,7 +40,7 @@ fun EmptyState(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = LightBrown,
+            tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(90.dp)
         )
 
@@ -50,7 +48,8 @@ fun EmptyState(
 
         Text(
             text = title,
-            style = MaterialTheme.typography.headlineSmall
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -58,7 +57,7 @@ fun EmptyState(
         Text(
             text = subtitle,
             fontFamily = Poppins,
-            color = Color.Gray
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(28.dp))
@@ -66,7 +65,8 @@ fun EmptyState(
         Button(
             onClick = onButtonClick,
             colors = ButtonDefaults.buttonColors(
-                containerColor = LightBrown
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
             )
         ) {
             Text(buttonText)

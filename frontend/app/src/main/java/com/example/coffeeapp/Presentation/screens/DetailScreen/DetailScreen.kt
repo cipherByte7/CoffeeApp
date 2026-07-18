@@ -2,14 +2,13 @@ package com.example.coffeeapp.Presentation.screens.DetailScreen
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.coffeeapp.Presentation.ui_components.LoadingIndicator
 import com.example.coffeeapp.Presentation.viewmodel.DetailViewModel
 import com.example.coffeeapp.R
 import com.example.coffeeapp.domain.model.Product
@@ -33,10 +32,7 @@ fun DetailScreen(productId: String, navController: NavHostController){
             topBar = { DSTopAppBar(navController) }
         ) { innerPadding ->
 
-            Text(
-                text = "Loading...",
-                modifier = Modifier.padding(innerPadding)
-            )
+            LoadingIndicator(modifier = Modifier.padding(innerPadding))
         }
 
         return

@@ -20,7 +20,6 @@ fun HomeCategories(
         "Hot Coffee",
         "Cold Coffee",
         "Chocolate",
-        "Dessert Coffee"
     )
 
     LazyRow(

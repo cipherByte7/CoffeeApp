@@ -23,12 +23,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.coffeeapp.Presentation.theme.IvoryWhite
 import com.example.coffeeapp.domain.model.Product
 
 
@@ -41,7 +39,7 @@ fun FavouriteItemCard(product: Product, onRemove:() -> Unit){
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = IvoryWhite,
+            containerColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onSurface
         ),
         elevation = CardDefaults.cardElevation(4.dp)
@@ -72,7 +70,7 @@ fun FavouriteItemCard(product: Product, onRemove:() -> Unit){
                     fontWeight = FontWeight.SemiBold)
 
                 Text(text = product.description,
-                    color = Color.DarkGray)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
 
             Row(
@@ -85,7 +83,7 @@ fun FavouriteItemCard(product: Product, onRemove:() -> Unit){
 
 
                         .size(30.dp)
-                ) { Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete From Fav", tint = Color.Gray) }
+                ) { Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete From Fav", tint = MaterialTheme.colorScheme.onSurfaceVariant) }
 
             }
         }

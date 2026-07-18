@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,8 +22,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffeeapp.Presentation.theme.IvoryWhite
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.Presentation.ui_components.AppMessageDialogue
 import com.example.coffeeapp.domain.model.Product
@@ -61,15 +60,15 @@ fun DSBottomBar(product: Product){
                     .height(70.dp),
                 shape = RoundedCornerShape(18.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = LightBrown,
-                    contentColor = IvoryWhite
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 )
 
 
             ) {
                 Text("Add to Cart",
                         fontSize = 16.sp,
-                    color = IvoryWhite,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     fontFamily = Poppins
                     )
             }

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
+import com.example.coffeeapp.Presentation.ui_components.LoadingIndicator
 import com.example.coffeeapp.Presentation.viewmodel.OrderViewModel
 
 @Composable
@@ -25,6 +26,13 @@ fun OrderHistoryScreen(
     val viewModel: OrderViewModel = viewModel()
 
     val orders = viewModel.orders
+
+    if (viewModel.isLoading) {
+
+        LoadingIndicator()
+
+        return
+    }
 
     if (orders.isEmpty()) {
 

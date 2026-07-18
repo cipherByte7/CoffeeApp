@@ -12,19 +12,18 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.Presentation.viewmodel.OrderDetailsViewModel
 import java.text.SimpleDateFormat
@@ -66,7 +65,7 @@ fun OrderDetailsScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         CircularProgressIndicator(
-                            color = LightBrown
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
@@ -115,7 +114,7 @@ fun OrderDetailsScreen(
 
                             Text(
                                 text = "Qty x${item.quantity}",
-                                color = Color.Gray,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 fontFamily = Poppins
                             )
 
@@ -123,7 +122,7 @@ fun OrderDetailsScreen(
 
                         Text(
                             text = "$${"%.2f".format(item.product.price * item.quantity)}",
-                            color = LightBrown,
+                            color = MaterialTheme.colorScheme.primary,
                             fontFamily = Poppins,
                             fontWeight = FontWeight.Bold
                         )

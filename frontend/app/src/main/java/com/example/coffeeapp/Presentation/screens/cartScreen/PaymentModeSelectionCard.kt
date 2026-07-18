@@ -32,7 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.R
 
@@ -68,7 +67,7 @@ fun PaymentModeSelectionCard(
                         }
                     ),
                     contentDescription = "Payment Mode",
-                    tint = LightBrown,
+                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(36.dp)
                 )
 
@@ -84,7 +83,7 @@ fun PaymentModeSelectionCard(
                     Text(
                         text = "$%.2f".format(totalBill),
                         fontWeight = FontWeight.SemiBold,
-                        color = LightBrown
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
 
@@ -126,14 +125,14 @@ fun PaymentModeSelectionCard(
                                             }
                                         ),
                                         contentDescription = null,
-                                        tint = LightBrown,
+                                        tint = MaterialTheme.colorScheme.primary,
                                         modifier = Modifier.size(34.dp)
                                     )
                                 },
                                 modifier = Modifier
                                     .background(
                                         color =
-                                            if(selectedMode == mode) LightBrown.copy(0.1f)
+                                            if(selectedMode == mode) MaterialTheme.colorScheme.primary.copy(0.1f)
                                             else Color.Transparent
                                     )
 
@@ -154,8 +153,8 @@ fun PaymentModeSelectionCard(
                     .height(55.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = LightBrown,
-                    contentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 )
             ) {
                 Text(

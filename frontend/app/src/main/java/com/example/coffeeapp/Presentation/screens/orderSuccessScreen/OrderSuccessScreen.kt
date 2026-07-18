@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 
 @Composable
@@ -42,7 +41,7 @@ fun OrderSuccessScreen(
             Icon(
                 imageVector = Icons.Default.CheckCircle,
                 contentDescription = null,
-                tint = LightBrown,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(120.dp)
             )
 
@@ -69,7 +68,8 @@ fun OrderSuccessScreen(
 
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = LightBrown
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 modifier = Modifier.padding(top = 32.dp)
             ) {

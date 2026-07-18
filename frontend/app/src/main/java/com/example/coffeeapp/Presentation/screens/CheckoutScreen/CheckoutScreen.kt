@@ -27,7 +27,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,12 +37,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.Presentation.screens.cartScreen.PaymentModeSelectionCard
-import com.example.coffeeapp.Presentation.theme.IvoryWhite
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.Presentation.viewmodel.CartViewModel
 import com.example.coffeeapp.domain.model.CartItem
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 
 @Composable
 fun CheckoutScreen(navController: NavController) {
@@ -100,7 +98,7 @@ fun CheckoutScreen(navController: NavController) {
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
-                HorizontalDivider(color = LightBrown.copy(alpha = 0.2f))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Row(
@@ -153,6 +151,9 @@ private fun CheckoutTopAppBar(navController: NavController) {
                 fontFamily = Poppins
             )
         },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.background
+        ),
     )
 }
 
@@ -165,7 +166,7 @@ private fun DeliveryAddressCard(
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = IvoryWhite,
+            containerColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onSurface
         ),
         elevation = CardDefaults.cardElevation(4.dp)
@@ -179,7 +180,7 @@ private fun DeliveryAddressCard(
             Icon(
                 imageVector = Icons.Default.LocationOn,
                 contentDescription = "Delivery Address",
-                tint = LightBrown,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.width(28.dp)
             )
 
@@ -196,7 +197,7 @@ private fun DeliveryAddressCard(
                     text = address,
                     fontFamily = Poppins,
                     fontSize = 13.sp,
-                    color = Color.DarkGray
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
@@ -205,7 +206,7 @@ private fun DeliveryAddressCard(
                 fontFamily = Poppins,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 13.sp,
-                color = LightBrown,
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .padding(start = 8.dp)
                     .clickable(onClick = onChangeClick)
@@ -246,7 +247,7 @@ private fun CheckoutOrderItemRow(cartItem: CartItem) {
                 text = "Qty ${cartItem.quantity}",
                 fontFamily = Poppins,
                 fontSize = 12.sp,
-                color = LightBrown
+                color = MaterialTheme.colorScheme.primary
             )
         }
 

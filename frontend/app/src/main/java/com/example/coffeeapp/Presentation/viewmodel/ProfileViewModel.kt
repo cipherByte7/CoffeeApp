@@ -16,6 +16,9 @@ class ProfileViewModel : ViewModel() {
     var user by mutableStateOf<User?>(null)
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     init {
         loadProfile()
     }
@@ -24,7 +27,11 @@ class ProfileViewModel : ViewModel() {
 
         viewModelScope.launch {
 
+            isLoading = true
+
             user = repository.getProfile()
+
+            isLoading = false
 
         }
 

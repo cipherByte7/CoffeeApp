@@ -20,17 +20,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
 import com.example.coffeeapp.Presentation.ui_components.EmptyState
+import com.example.coffeeapp.Presentation.ui_components.LoadingIndicator
 import com.example.coffeeapp.Presentation.viewmodel.CartViewModel
 
 @Composable
@@ -74,8 +73,8 @@ fun CartScreen(navController: NavController) {
                             .height(55.dp),
                         shape = RoundedCornerShape(16.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = LightBrown,
-                            contentColor = Color.White
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            contentColor = MaterialTheme.colorScheme.onPrimary
                         )
                     ) {
                         Text(
@@ -96,7 +95,11 @@ fun CartScreen(navController: NavController) {
 
     ) { innerPadding ->
 
-        if (cartItems.isEmpty()) {
+        if (viewModel.isLoading && cartItems.isEmpty()) {
+
+            LoadingIndicator(modifier = Modifier.padding(innerPadding))
+
+        } else if (cartItems.isEmpty()) {
 
             EmptyState(
                 modifier = Modifier.padding(innerPadding),
@@ -124,7 +127,7 @@ fun CartScreen(navController: NavController) {
                             text = "Deliver",
                             fontSize = 30.sp,
                             fontWeight = FontWeight.Bold,
-                            color = LightBrown
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
 
@@ -149,7 +152,7 @@ fun CartScreen(navController: NavController) {
                     Spacer(modifier = Modifier.height(28.dp))
 
                     HorizontalDivider(
-                        color = LightBrown.copy(alpha = 0.2f)
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
 
                     Spacer(modifier = Modifier.height(28.dp))
@@ -213,7 +216,7 @@ fun CartScreen(navController: NavController) {
                             text = "$%.2f".format(totalBill),
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp,
-                            color = LightBrown
+                            color = MaterialTheme.colorScheme.primary
                         )
 
                     }

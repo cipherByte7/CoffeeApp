@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.R
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.theme.Poppins
 
 
@@ -35,7 +34,7 @@ fun BottomNavBar(navController: NavController, routes: String){
     )
 
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.surface,
+        containerColor = MaterialTheme.colorScheme.background,
         modifier =  Modifier.height(65.dp)
     ){
         navItems.forEachIndexed { index, item ->
@@ -64,11 +63,11 @@ fun BottomNavBar(navController: NavController, routes: String){
                 selected = item.title == routes,
                 alwaysShowLabel = false,
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = LightBrown,
-                    selectedTextColor = LightBrown,
-                    unselectedIconColor = Color.DarkGray,
-                    unselectedTextColor = Color.DarkGray,
-                    indicatorColor = LightBrown.copy(0.04f)
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    indicatorColor = MaterialTheme.colorScheme.primary.copy(0.12f)
                 )
 
             )

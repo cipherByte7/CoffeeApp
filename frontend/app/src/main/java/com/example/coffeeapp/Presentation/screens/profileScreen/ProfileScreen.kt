@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -29,13 +30,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
-import com.example.coffeeapp.Presentation.theme.LightBrown
 import com.example.coffeeapp.Presentation.ui_components.BottomNavBar
 import androidx.compose.material3.Switch
 import androidx.compose.material3.TextButton
@@ -103,7 +102,7 @@ fun ProfileScreen(navController: NavController) {
                         .size(120.dp)
                         .clip(CircleShape)
                         .background(
-                            color = LightBrown.copy(0.2f),
+                            color = MaterialTheme.colorScheme.primary.copy(0.15f),
                         ),
                     contentAlignment = Alignment.Center
                 ) {
@@ -112,21 +111,34 @@ fun ProfileScreen(navController: NavController) {
                         contentDescription = "Profile Picture",
                         modifier = Modifier
                             .size(85.dp),
-                        tint = LightBrown
+                        tint = MaterialTheme.colorScheme.primary
 
                     )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = profileViewModel.user?.name ?: "Loading...",
-                    style = MaterialTheme.typography.headlineLarge
-                )
-                Text(
-                    text = profileViewModel.user?.email ?: "",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray
-                )
+
+                if (profileViewModel.isLoading && profileViewModel.user == null) {
+
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(28.dp),
+                        color = MaterialTheme.colorScheme.primary,
+                        strokeWidth = 3.dp
+                    )
+
+                } else {
+
+                    Text(
+                        text = profileViewModel.user?.name ?: "",
+                        style = MaterialTheme.typography.headlineLarge
+                    )
+                    Text(
+                        text = profileViewModel.user?.email ?: "",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
+                }
             }
 
             Spacer(modifier = Modifier.height(35.dp))
