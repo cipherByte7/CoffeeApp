@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import com.example.coffeeapp.Presentation.navigation.Routes
 import com.example.coffeeapp.R
 import com.example.coffeeapp.Presentation.theme.Poppins
+import androidx.compose.foundation.layout.navigationBarsPadding
 
 
 
@@ -35,14 +36,17 @@ fun BottomNavBar(navController: NavController, routes: String){
 
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.background,
-        modifier =  Modifier.height(65.dp)
+        modifier = Modifier
+            .navigationBarsPadding()
+            .height(54.dp)
     ){
         navItems.forEachIndexed { index, item ->
             NavigationBarItem(
                 icon = {
                     Icon(
                         painter = painterResource(item.icon),
-                        contentDescription = item.title
+                        contentDescription = item.title,
+                        modifier = Modifier.size(22.dp)
                     )
 
                 },
@@ -50,7 +54,7 @@ fun BottomNavBar(navController: NavController, routes: String){
                     fontFamily = Poppins
                 )
                     },
-                modifier = Modifier.size(18.dp),
+                //modifier = Modifier.size(18.dp),
                 onClick = {
                     navController.navigate(item.routes){
                         popUpTo(navController.graph.startDestinationId){
